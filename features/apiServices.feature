@@ -11,7 +11,7 @@ Examples:
 | https://www.polestar.com/ |
 
 @globalAPI
-Scenario : Get API GET request for Global website
+Scenario : Get API GET request for Backend URL
 When I get API response in text format for the "<BackendURL>"
 Then I validate the response status code to be 200 for "<BackendURL>"
 
