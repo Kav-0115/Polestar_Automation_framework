@@ -11,7 +11,7 @@ async getAPIGlobalResponse() {
   let config : {} = {
     method : 'get',
     httpsAgent : agent ,
-    url : https://www.polestar.com/
+    url : 'https://www.polestar.com/'
     headers : {
         'age': '18334' ,
         'cache-control': 'public, s-maxage=86400, max-age=0, must-revalidate',
@@ -29,8 +29,35 @@ async getAPIGlobalResponse() {
 
 async validateGlobalServiceStatusCode() {
     let response = await this.getAPIGlobalResponse();
+    await expect(response.status).toEqual(304)
+}
+
+async validateBackendURLServiceStatusCode() {
+    let response = await this.getAPIGlobalResponse();
     await expect(response.status).toEqual(200)
 }
+async getBackendURLResponse() {
+    let response : any ;
+    let config : {} = {
+      method : 'get',
+      httpsAgent : agent ,
+      url : 'https://reqres.in/api/users?page=2'
+      headers : {
+        'access-control-allow-origin':' * ',
+        'age': '5817',
+        'cache-control': 'max-age=14400',
+        'cf-cache-status': 'HIT',
+        'cf-ray': '89edb37f1899a902-MAA'
+        'content-encoding': 'br',
+        'date': 'Sat, 06 Jul 2024 06:57:32 GMT '
+      },
+      data : DataTransfer
+  };
+     response = await axios.get(config.url, data, config)
+      return response;
+   }
+
+
 
 
 
